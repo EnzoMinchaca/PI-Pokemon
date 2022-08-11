@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
     hp: {
       type: DataTypes.INTEGER
     },
-    atack: {
+    attack: {
       type: DataTypes.INTEGER
     },
     defense: {
@@ -26,12 +26,16 @@ module.exports = (sequelize) => {
     },
     speed: {
       type: DataTypes.INTEGER
-    },
+    }, 
     height: {
       type: DataTypes.INTEGER
     },
     weight: {
       type: DataTypes.INTEGER
+    },
+    img:{
+      type:DataTypes.TEXT,
+      allowNull:false
     },
     createdInDb: {
       type: DataTypes.BOOLEAN,    //todos los que cree se van a crear con esta propiedad
