@@ -16,7 +16,7 @@ router.get('/pokemons', async(req, res) => {
     const allPokemons = await getAllPokemons()  //me triago el array de todos los pokemons
     if(name) {
         let pokemonName = await allPokemons.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))   //filtro todos los names que incluyan en alguna parte el name pasado por query para que asi sea mas abarcativo y no tan especifico como con el ===
-        pokemonName.length ? res.status(200).send(pokemonName) : res.status(404).send("Pokemon not found")
+        pokemonName.length ? res.status(200).send(pokemonName) : res.send("Pokemon not found")
     }   //si ya hay mas de uno en el array me devuelve ese array que contiene a todos los names que incluyen al pasado por query sino f 
     else {  //este es el otro caso de que no hay query entonces directamente trae todos los pokemon
         res.status(200).json(allPokemons)
@@ -24,25 +24,37 @@ router.get('/pokemons', async(req, res) => {
 })
 
 router.get('/pokemons/:idPokemon', async(req, res) => {
-    const {idPokemon} = req.params
-    const allPokemons = await getAllPokemons()  //me traigo todos los personajes para luego filtrar el que coincida con el id
-    if(idPokemon) {     //si hay id...
-        let pokemonId = await allPokemons.filter(e => e.id == idPokemon)    //filtro por el id que coincida
-        pokemonId.length ? res.status(200).json(pokemonId) : res.status(404).send("Pokemon not found")
-    }   //si hay un elemento en el array lo devuelvo sino error
+    try {
+        const {idPokemon} = req.params
+        const allPokemons = await getAllPokemons()  //me traigo todos los personajes para luego filtrar el que coincida con el id
+        if(idPokemon) {     //si hay id...
+            let pokemonId = allPokemons.filter(e => e.id == idPokemon)    //filtro por el id que coincida
+            pokemonId.length ? res.status(200).send(pokemonId) : res.status(404).send("Pokemon not found")
+            //si hay un elemento en el array lo devuelvo sino error
+    }  
+    }
+    catch(e) {
+        console.log(e)
+    }
+     //si hay un elemento en el array lo devuelvo sino error
 })
 
 router.get('/types', async(req, res) => {
-    const types = await getTypesPokemons()  //me traigo el array de types    
-    types.forEach(e => {    //para cada elemento
-        Type.findOrCreate({     //entra a Type y busca o crea segun...
-            where: {        //donde el valor del atributo name sea el del elemento
-                name: e     
-            }   //creame en type estas types que te pase
-        })  // osea buscaria en la db que hayan las ocupaciones que anteriormente trajimos de la api, si las encuentra en la db no hace nada y sino las encuentra las crea
-    })
-    const allTypes = await Type.findAll()   //luego solo traigo todas los types que estan en la db Type
-    res.status(200).send(allTypes)   //y los devuelvo
+    try {
+        const types = await getTypesPokemons()  //me traigo el array de types    
+        types.forEach(e => {    //para cada elemento
+            Type.findOrCreate({     //entra a Type y busca o crea segun...
+                where: {        //donde el valor del atributo name sea el del elemento
+                    name: e     
+                }   //creame en type estas types que te pase
+            })  // osea buscaria en la db que hayan las ocupaciones que anteriormente trajimos de la api, si las encuentra en la db no hace nada y sino las encuentra las crea
+        })
+        const allTypes = await Type.findAll()   //luego solo traigo todas los types que estan en la db Type
+        res.status(200).send(allTypes)   //y los devuelvo
+    }
+    catch(e) {
+        console.log(e)
+    }
 })
 
 router.post('/pokemons', async(req, res) => {
@@ -76,15 +88,24 @@ router.post('/pokemons', async(req, res) => {
             }
         })  //hacemos con add xq es una relacion de distintos modelos, no puedo crear una propiedad type seria innecesario si ya tiene la relacion con el modelo Type
         pokemonCreated.addType(typeDb)  //entonces luego a ese pokemon que estamos creando le agrego estas types que coincidieron con el que pase por body
-        res.status(200).send('Pokemon creado exitosamente')     //no validamos que la info este bien xq ya lo hacemos desde el front
+        res.status(200).send('Successfully created pokemon')     //no validamos que la info este bien xq ya lo hacemos desde el front
     } 
     catch(e) {
         console.log(e)
     }
-    
+
 })
 
-
+router.delete('/pokemons/:id', async(req, res) => {
+    const {id} = req.params
+    const pokemon = await Pokemon.findByPk(id)
+    if(pokemon) {
+        pokemon.destroy()
+        res.status(200).send("Pokemon deleted")
+    } else {
+        res.status(404).send("Invalid id")
+    }
+})
 
 
 module.exports = router;

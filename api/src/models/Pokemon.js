@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
     },
     img:{
       type:DataTypes.TEXT,
-      allowNull:false
+      allowNull:false,
     },
     createdInDb: {
       type: DataTypes.BOOLEAN,    //todos los que cree se van a crear con esta propiedad

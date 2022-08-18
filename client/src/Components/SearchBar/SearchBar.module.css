@@ -1,0 +1,19 @@
+.content {
+    margin-top: 20px;
+}
+
+.input {
+    font-size: 20px;
+    font-family: 'Acme', sans-serif;
+    border-radius: 10px;
+}
+
+.button {
+    font-size: 20px;
+    font-family: 'Acme', sans-serif;
+    border-radius: 10px;
+}
+
+.button:hover {
+    cursor: pointer;
+}

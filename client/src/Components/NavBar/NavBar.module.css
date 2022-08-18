@@ -1,0 +1,44 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(62, 107, 255);
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.541);
+}
+
+.logo {
+    width: 200px;
+    height: 80px;
+}
+
+.logo:hover {
+    transform: translateY(-5px);
+}
+
+.home {
+    font-size: 30px;
+    position: relative;
+    left: 10px;
+}
+
+.home:hover {
+    transform: translateY(-5px);
+}
+
+.create {
+    font-size: 30px;
+    position: relative;
+    right: 30px
+}
+
+.create:hover {
+    transform: translateY(-5px);
+}
+
+.text {
+    text-decoration: none;
+    color: black;
+}
+
+

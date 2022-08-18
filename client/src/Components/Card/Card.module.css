@@ -1,0 +1,42 @@
+.content {
+    height: 100%;
+    border-radius: 20px;
+}
+
+.first {
+    border-radius: 20px 20px 0 0;
+}
+
+.img {
+    display: flex;
+    width: 250px;
+    height: 250px;
+    border: 1px solid gray;
+    border-radius: 20px 20px 0 0;
+}
+
+.data {
+    background-color: rgba(93, 93, 255, 0.603);
+    border: 1px solid rgb(55, 55, 156);
+    border-radius: 0 0 20px 20px;
+}
+
+.name {
+    margin-top: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+}
+
+.types {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.type {
+    border: 1px solid rgb(55, 55, 156);
+    padding: 5px;
+    border-radius: 5px;
+}

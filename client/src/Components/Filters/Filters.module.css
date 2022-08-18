@@ -1,0 +1,12 @@
+.select {
+    margin: 20px 20px 10px;
+    font-size: 20px;
+    font-family: 'Acme', sans-serif;
+    border-radius: 10px;
+    /* background-color: rgb(62, 107, 255);
+    color: whitesmoke; */
+}
+
+.select:hover {
+    cursor: pointer;
+}
