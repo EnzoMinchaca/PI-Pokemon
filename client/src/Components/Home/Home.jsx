@@ -17,14 +17,14 @@ export default function Home() {
     const dispatch = useDispatch()
     const [currentPage, setCurrentPage] = useState(1)
     const [pokemonPerPage, setPokemonPerPage] = useState(12)
-    const indexOfLastPokemon = currentPage * pokemonPerPage //en un principio va a ser 6
-    const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage   //0
-    const currentPokemons = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon)      //el slice agarra un array y toma una porcion dependiendo de lo que le pase por paramtro               //constante que guarda todos los personajes que tengo en cada pagina      //osea en la pagina 1 me renderiza del 0 al 5, de la pagina 2 del 6 al 11 pero sin tomar el ultimo numero y asi es como solo agarra 6 por pagina, osea se guarda cuales personajes se van a ir renderizando dependiendo de la pagina
-    const [order, setOrder] = useState('')  //me hago un estado local el cual primeramente le asigno un valor vacio
+    const indexOfLastPokemon = currentPage * pokemonPerPage 
+    const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage   
+    const currentPokemons = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon)      
+    const [order, setOrder] = useState('')  
 
     const paginado = (numPage) => {
-        setCurrentPage(numPage)     //eso me setea a una nueva pagina, es la que me va a ayudar en el renderizado, me va a setear la pagina en el numero que yo vaya apretando
-    }   //osea cuando se setea esa pagina todos los indices de los const de arriba cambian y el slice se va a ir modificando
+        setCurrentPage(numPage)     
+    }   
 
     useEffect(() => {
         dispatch(getPokemons())
