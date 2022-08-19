@@ -5,10 +5,10 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('pokemon', {
     id: {
-      type: DataTypes.UUID,   
-      defaultValue: DataTypes.UUIDV4, 
-      allowNull: false,  
-      primaryKey: true  
+      type: DataTypes.UUID,   //genera un numero random con letras y numeros unico, datatype ya determinado de sequalize
+      defaultValue: DataTypes.UUIDV4,  //valor por defecto random
+      allowNull: false,  //no permite ser nulo
+      primaryKey: true  //como es id es mi pk
     },
     name: {
       type: DataTypes.STRING,
@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
       allowNull:false,
     },
     createdInDb: {
-      type: DataTypes.BOOLEAN,    
+      type: DataTypes.BOOLEAN,    //todos los que cree se van a crear con esta propiedad
       allowNull: false,
       defaultValue: true
     }
