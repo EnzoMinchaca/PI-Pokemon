@@ -4,7 +4,7 @@ const { Pokemon, Type } = require('../db')  //me los traigo de db xq ahi se expo
 const getPokeApiInfo = async() => {
     try {
         let pokemons = []   //me creo un arreglo xq en mas abajo voy a tener una promesa y no puedo guuradar datos en todo el quilombo
-        const infoApi = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=60')  //tengo que hacer otra request xq dentro hay una url donde esta mas info, results es un array de objetos    data = {results: [], etc}
+        const infoApi = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40')  //tengo que hacer otra request xq dentro hay una url donde esta mas info, results es un array de objetos    data = {results: [], etc}
         let pokeInfo = infoApi.data.results.map(e => axios.get(e.url))    //ahora si ya tengo toda la info para mapear, pero por cada pokeInfo va a hacer un request, y si va de uno en uno va a tardar mucho, tengo que hacer que se hagan todas al mismo tiempo
         let allPokemons = Promise.all(pokeInfo)     //data = {[{pok1}, {pok2}, ...]} = response?        //me traigo toda la info a la vez xq todos tienen request y demorarian
             .then(response => {     //mi response es el array de objetos pokemon
