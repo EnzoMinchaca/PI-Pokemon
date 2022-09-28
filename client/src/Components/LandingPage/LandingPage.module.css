@@ -35,19 +35,32 @@
 }
 
 .content {
+    margin: auto;
     display: flex;
     justify-content: flex-end;
     margin-right: 50px;
     padding: 0;
+    flex-direction: row;
 }
 
 .li {
-    height: 60px;
-    width: 60px;
+    height: 3em;
+    width: 3em;
     padding: 0;
 }
 
 .li:hover {
     cursor: pointer;
     transform: translateY(-5px);
+}
+
+.git {
+    height: 3.45em;
+    width: 3.45em;
+    transform: translateY(-5px);
+}
+
+.git:hover {
+    cursor: pointer;
+    transform: translateY(-10px);
 }
